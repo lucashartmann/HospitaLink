@@ -1,22 +1,33 @@
 import java.util.Date;
 
 public class Consulta {
-    Date dia_hora;
+
+    String hora;
+    String data;
     Medico medico;
     Paciente paciente;
 
-    public Consulta(Date dia_hora, Medico medico, Paciente paciente) {
-        this.dia_hora = dia_hora;
+    public Consulta(Paciente paciente, Medico medico, String data, String hora) {
+        this.data = data;
+        this.hora = hora;
         this.medico = medico;
         this.paciente = paciente;
     }
 
-    public Date getDia_hora() {
-        return dia_hora;
+    public String getHora() {
+        return hora;
     }
 
-    public void setDia_hora(Date dia_hora) {
-        this.dia_hora = dia_hora;
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     public Medico getMedico() {
@@ -37,7 +48,7 @@ public class Consulta {
 
     @Override
     public String toString() {
-        return "Consulta [dia_hora=" + dia_hora + ", medico=" + medico + ", paciente=" + paciente + "]";
+        return "Consulta [hora=" + hora + ", data=" + data + ", medico=" + medico + ", paciente=" + paciente + "]";
     }
 
 }

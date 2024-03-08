@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class App {
 
+    Calendario calendario = new Calendario();
     Endereco endereco = new Endereco("Avenida Bento Gonçalves", 205, "90C", "Santo Antonio", "Soledade", "RS",
             "90650-001");
     Hospital clinicas = new Hospital("Clinicas", endereco);
@@ -49,8 +50,7 @@ public class App {
     }
 
     public void consulta() {
-        String nome, rg, genero, data_nascimento;
-        int dia, mes, hora, minuto;
+        String nome, rg, genero, data_nascimento, data, hora_minuto;
         Paciente paciente;
         Medico medico;
         Consulta consulta;
@@ -71,11 +71,17 @@ public class App {
                 genero = scanner.next();
                 System.out.println("Digite o data de nascimento do paciente:");
                 data_nascimento = scanner.next();
-                paciente = new Paciente(nome, rg, genero, data_nascimento);
                 System.out.println("Digite o nome do médico: ");
                 nome = scanner.next();
+                System.out.println("Digite a data(formato ddmmuuuu)");
+                data = scanner.next();
+                System.out.println("Digite a hora e minuto (formato horaminuto)");
+                hora_minuto = scanner.next();
+                data = calendario.formatarData(data);
+                hora_minuto = calendario.formatarHora(hora_minuto);
                 medico = clinicas.consultarMedicos(nome);
-                consulta = new Consulta(null, medico, paciente);
+                paciente = new Paciente(nome, rg, genero, data_nascimento);
+                consulta = new Consulta(paciente, medico, data, hora_minuto);
                 System.out.println("Consulta marcada");
                 break;
             case 2:
@@ -84,20 +90,14 @@ public class App {
                 nome = scanner.next();
                 paciente = clinicas.consultarPacientes(nome);
                 consulta = clinicas.consultarAgenda(paciente);
-                do {
-                    System.out.println("Digite o novo dia(Digite usando números)");
-                    dia = scanner.nextInt();
-                } while (dia < 1 || dia > 31);
-                do {
-                    System.out.println("Digite o novo mês (Digite usando números)");
-                    mes = scanner.nextInt();
-                } while (mes < 1 || mes > 12);
-                System.out.println("Digite a nova hora (Digite usando números)");
-                hora = scanner.nextInt();
-                System.out.println("Digite o novo minuto (Digite usando números)");
-                minuto = scanner.nextInt();
+                System.out.println("Digite a nova data(formato ddmmuuuu)");
+                data = scanner.next();
+                System.out.println("Digite a nova hora e minuto (formato horaminuto)");
+                hora_minuto = scanner.next();
                 medico = consulta.getMedico();
-                consulta = new Consulta(null, medico, paciente);
+                data = calendario.formatarData(data);
+                hora_minuto = calendario.formatarHora(hora_minuto);
+                consulta = new Consulta(paciente, medico, data, hora_minuto);
                 System.out.println("Consulta remarcada");
                 break;
             case 3:
