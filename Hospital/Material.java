@@ -8,22 +8,27 @@ public class Material {
         this.nome = nome;
         this.valor = valor;
     }
-    
+
     public int getId_material() {
         return id_material;
     }
+
     public void setId_material(int id_material) {
         this.id_material = id_material;
     }
+
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public double getValor() {
         return valor;
     }
+
     public void setValor(double valor) {
         this.valor = valor;
     }
@@ -32,6 +37,4 @@ public class Material {
     public String toString() {
         return "Material [id_material=" + id_material + ", nome=" + nome + ", valor=" + valor + "]";
     }
-    
-    
 }

@@ -40,7 +40,4 @@ public class Consulta {
         return "Consulta [dia_hora=" + dia_hora + ", medico=" + medico + ", paciente=" + paciente + "]";
     }
 
-    
-    
-    
 }

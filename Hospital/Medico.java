@@ -59,7 +59,4 @@ public class Medico {
                 + num_crm + ", uf_crm=" + uf_crm + "]";
     }
 
-    
-
-    
 }

@@ -6,7 +6,7 @@ public class Cirurgia {
     private int id_paciente;
     private int id_medico;
     private int id_sala;
-    
+
     public Cirurgia(int id_cirurgia, Date data_hora, int id_paciente, int id_medico, int id_sala) {
         this.id_cirurgia = id_cirurgia;
         this.data_hora = data_hora;
@@ -60,8 +60,5 @@ public class Cirurgia {
         return "Cirurgia [id_cirurgia=" + id_cirurgia + ", data_hora=" + data_hora + ", id_paciente=" + id_paciente
                 + ", id_medico=" + id_medico + ", id_sala=" + id_sala + "]";
     }
-    
-    
-    
-    
+
 }

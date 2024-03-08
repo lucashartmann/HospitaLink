@@ -12,34 +12,43 @@ public class Sala {
         this.andar = andar;
         this.metragem = metragem;
     }
-    
+
     public int getId_sala() {
         return id_sala;
     }
+
     public void setId_sala(int id_sala) {
         this.id_sala = id_sala;
     }
+
     public int getNum_sala() {
         return num_sala;
     }
+
     public void setNum_sala(int num_sala) {
         this.num_sala = num_sala;
     }
+
     public int getAla() {
         return ala;
     }
+
     public void setAla(int ala) {
         this.ala = ala;
     }
+
     public int getAndar() {
         return andar;
     }
+
     public void setAndar(int andar) {
         this.andar = andar;
     }
+
     public int getMetragem() {
         return metragem;
     }
+
     public void setMetragem(int metragem) {
         this.metragem = metragem;
     }
@@ -49,7 +58,5 @@ public class Sala {
         return "Sala [id_sala=" + id_sala + ", num_sala=" + num_sala + ", ala=" + ala + ", andar=" + andar
                 + ", metragem=" + metragem + "]";
     }
-
-    
     
 }

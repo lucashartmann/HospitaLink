@@ -79,6 +79,4 @@ public class Endereco {
                 + ", cidade=" + cidade + ", uf=" + uf + ", cep=" + cep + "]";
     }
 
-    
-    
 }
