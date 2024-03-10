@@ -18,7 +18,6 @@ public class Hospital {
         multidao = new ArrayList<>();
         agenda = new ArrayList<>();
         this.nome = nome;
-        this.id_hospital = id_hospital;
         this.endereco_hospital = endereco_hospital;
     }
 
@@ -97,13 +96,12 @@ public class Hospital {
     }
 
     public int id_hospital() {
-        Random gerador = new Random();
-        int numeros = 0;
-        for (int i = 0; i < 10; i++) {
-            numeros = gerador.nextInt();
-            return numeros;
+        Random rand = new Random();
+        int id_hospital = 0;
+        for (int i = 0; i <= 10; i++) {
+            id_hospital = rand.nextInt();
         }
-        return numeros;
+        return id_hospital;
     }
 
     public Endereco getEndereco_hospital() {
@@ -120,4 +118,5 @@ public class Hospital {
                 + ", medico=" + medico + ", paciente=" + paciente + ", consulta=" + consulta + ", junta=" + junta
                 + ", multidao=" + multidao + ", agenda=" + agenda + "]";
     }
+
 }

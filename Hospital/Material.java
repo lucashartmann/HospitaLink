@@ -37,4 +37,5 @@ public class Material {
     public String toString() {
         return "Material [id_material=" + id_material + ", nome=" + nome + ", valor=" + valor + "]";
     }
+
 }

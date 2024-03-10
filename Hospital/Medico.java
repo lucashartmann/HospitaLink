@@ -1,14 +1,15 @@
+import java.util.Random;
+
 public class Medico {
     private String nome;
     private String especialidade;
     private int id_medico;
     private int num_crm;
-    private int uf_crm;
+    private String uf_crm;
 
-    public Medico(String nome, String especialidade, int id_medico, int num_crm, int uf_crm) {
+    public Medico(String nome, String especialidade, int num_crm, String uf_crm) {
         this.nome = nome;
         this.especialidade = especialidade;
-        this.id_medico = id_medico;
         this.num_crm = num_crm;
         this.uf_crm = uf_crm;
     }
@@ -33,8 +34,13 @@ public class Medico {
         return id_medico;
     }
 
-    public void setId_medico(int id_medico) {
-        this.id_medico = id_medico;
+    public int setId_medico() {
+        Random rand = new Random();
+        int id_medico = 0;
+        for (int i = 0; i <=10; i++){
+            id_medico = rand.nextInt();
+        } 
+        return id_medico;
     }
 
     public int getNum_crm() {
@@ -45,11 +51,11 @@ public class Medico {
         this.num_crm = num_crm;
     }
 
-    public int getUf_crm() {
+    public String getUf_crm() {
         return uf_crm;
     }
 
-    public void setUf_crm(int uf_crm) {
+    public void setUf_crm(String uf_crm) {
         this.uf_crm = uf_crm;
     }
 

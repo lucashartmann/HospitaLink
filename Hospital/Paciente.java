@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Paciente {
 
     private int id_paciente;
@@ -5,21 +7,26 @@ public class Paciente {
     private String num_documento;
     private String genero;
     private String data_nascimento;
+    private PlanoSaude plano_saude;
 
-    public Paciente(String nome, String num_documento, String genero, String data_nascimento) {
-        this.id_paciente = id_paciente;
+    public Paciente(String nome, String num_documento, String genero, String data_nascimento, PlanoSaude plano_saude) {
         this.nome = nome;
         this.num_documento = num_documento;
         this.genero = genero;
         this.data_nascimento = data_nascimento;
+        this.plano_saude = plano_saude;
     }
 
     public int getId_paciente() {
         return id_paciente;
     }
 
-    public void setId_paciente(int id_paciente) {
-        this.id_paciente = id_paciente;
+    public int setId_paciente() {
+        Random rand = new Random();
+        for (int i = 0; i <=10; i++){
+            int id_paciente = rand.nextInt();
+        } 
+        return id_paciente;
     }
 
     public String getNome() {

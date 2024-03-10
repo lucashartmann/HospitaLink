@@ -22,11 +22,11 @@ public class Calendario {
     }
 
     public String formatarHora(String hora_minuto) {
-        // converter 212010 para 21:20:10
-        DateTimeFormatter parserHora = DateTimeFormatter.ofPattern("HHmmss");
+        // converter 2120 para 21:20
+        DateTimeFormatter parserHora = DateTimeFormatter.ofPattern("HHmm");
         LocalTime hora = LocalTime.parse(hora_minuto, parserHora);
-        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String horaFormatada = formatterHora.format(hora); // 21:20:10
+        DateTimeFormatter formatterHora = DateTimeFormatter.ofPattern("HH:mm");
+        String horaFormatada = formatterHora.format(hora); // 21:20
         return horaFormatada;
     }
 }

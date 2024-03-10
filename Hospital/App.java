@@ -14,10 +14,10 @@ public class App {
     }
 
     public void menu() {
-        System.out.println("Digite o número do procedimento");
+        System.out.println("Digite o número do procedimento desejado");
         System.out.println("1 -- Modificar consulta");
         System.out.println("2 -- Ver hospital");
-        System.out.println("3 -- ");
+        System.out.println("3 -- Cadastrar médicos");
         System.out.println("4 -- ");
         System.out.println("5 -- Sair do Menu ");
         int option = scanner.nextInt();
@@ -43,6 +43,7 @@ public class App {
                 System.out.println("Caracter inválido, tente novamente");
                 break;
         }
+        scanner.close();
     }
 
     public void verHospital() {
@@ -50,15 +51,15 @@ public class App {
     }
 
     public void consulta() {
-        String nome, rg, genero, data_nascimento, data, hora_minuto;
+        String nome, rg, genero, data_nascimento, data, hora_minuto, nomeMedico;
         Paciente paciente;
         Medico medico;
         Consulta consulta;
-        System.out.println("Selecione a opção da operação");
-        System.out.println("Marcar");
-        System.out.println("Remarcar");
-        System.out.println("Cancelar");
-        System.out.println("Sair");
+        System.out.println("Digite o número da operação desejada");
+        System.out.println("1 -- Marcar");
+        System.out.println("2 -- Remarcar");
+        System.out.println("3 -- Cancelar");
+        System.out.println("4 -- Sair");
         int option = scanner.nextInt();
         switch (option) {
             case 1:
@@ -69,20 +70,23 @@ public class App {
                 rg = scanner.next();
                 System.out.println("Digite o genero do paciente:");
                 genero = scanner.next();
-                System.out.println("Digite o data de nascimento do paciente:");
+                System.out.println("Digite o data de nascimento do paciente: (formato ddmmuuuu)");
                 data_nascimento = scanner.next();
                 System.out.println("Digite o nome do médico: ");
-                nome = scanner.next();
+                nomeMedico = scanner.next();
                 System.out.println("Digite a data(formato ddmmuuuu)");
                 data = scanner.next();
                 System.out.println("Digite a hora e minuto (formato horaminuto)");
                 hora_minuto = scanner.next();
+                data_nascimento = calendario.formatarData(data_nascimento);
                 data = calendario.formatarData(data);
                 hora_minuto = calendario.formatarHora(hora_minuto);
-                medico = clinicas.consultarMedicos(nome);
-                paciente = new Paciente(nome, rg, genero, data_nascimento);
+                medico = clinicas.consultarMedicos(nomeMedico);
+                paciente = new Paciente(nome, rg, genero, data_nascimento, null);
                 consulta = new Consulta(paciente, medico, data, hora_minuto);
-                System.out.println("Consulta marcada");
+                clinicas.cadastrarConsultas(consulta);
+                clinicas.cadastrarPacientes(paciente);
+                System.out.println("Consulta marcada" + consulta.toString());
                 break;
             case 2:
                 // Remarcar consulta
@@ -94,11 +98,11 @@ public class App {
                 data = scanner.next();
                 System.out.println("Digite a nova hora e minuto (formato horaminuto)");
                 hora_minuto = scanner.next();
-                medico = consulta.getMedico();
                 data = calendario.formatarData(data);
                 hora_minuto = calendario.formatarHora(hora_minuto);
-                consulta = new Consulta(paciente, medico, data, hora_minuto);
-                System.out.println("Consulta remarcada");
+                consulta.setData(data);
+                consulta.setHora(hora_minuto);
+                System.out.println("Consulta remarcada" + consulta.toString());
                 break;
             case 3:
                 // cancelar consulta
@@ -118,6 +122,25 @@ public class App {
                 System.out.println("Caracter inválido, tente novamente");
                 break;
         }
+        scanner.close();
+    }
+
+    public void cadastroMedicos() {
+        String nome, especialidade, uf_crm;
+        int num_crm;
+        Medico medico;
+
+        System.out.println("Digite o nome do médico");
+        nome = scanner.next();
+        System.out.println("Digite a especialidade do médico");
+        especialidade = scanner.next();
+        System.out.println("Digite o número do CRM");
+        num_crm = scanner.nextInt();
+        System.out.println("Digite o UF do CRM");
+        uf_crm = scanner.next();
+        medico = new Medico(nome, especialidade, num_crm, uf_crm);
+        clinicas.cadastrarMedicos(medico);
+
     }
 
 }

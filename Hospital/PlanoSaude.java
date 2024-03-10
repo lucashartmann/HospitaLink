@@ -37,4 +37,5 @@ public class PlanoSaude {
     public String toString() {
         return "PlanoSaude [nome=" + nome + ", id_plano=" + id_plano + ", id_paciente=" + id_paciente + "]";
     }
+
 }

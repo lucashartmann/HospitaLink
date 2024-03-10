@@ -58,5 +58,5 @@ public class Sala {
         return "Sala [id_sala=" + id_sala + ", num_sala=" + num_sala + ", ala=" + ala + ", andar=" + andar
                 + ", metragem=" + metragem + "]";
     }
-    
+
 }
