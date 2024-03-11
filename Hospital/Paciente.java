@@ -17,13 +17,14 @@ public class Paciente {
         this.genero = genero;
         this.data_nascimento = data_nascimento;
         this.plano_saude = plano_saude;
+        this.id_paciente = gerarId_paciente();
     }
 
     public int getId_paciente() {
         return id_paciente;
     }
 
-    public int setId_paciente() {
+    public int gerarId_paciente() {
         Random rand = new Random();
         for (int i = 0; i <=10; i++){
             id_paciente = rand.nextInt();

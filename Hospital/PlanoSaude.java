@@ -1,11 +1,13 @@
+import java.util.Random;
+
 public class PlanoSaude {
     private String nome;
     private int id_plano;
     private int id_paciente;
 
-    public PlanoSaude(String nome, int id_plano, int id_paciente) {
+    public PlanoSaude(String nome, int id_paciente) {
         this.nome = nome;
-        this.id_plano = id_plano;
+        this.id_plano = gerarId_plano();
         this.id_paciente = id_paciente;
     }
 
@@ -21,8 +23,12 @@ public class PlanoSaude {
         return id_plano;
     }
 
-    public void setId_plano(int id_plano) {
-        this.id_plano = id_plano;
+    public int gerarId_plano() {
+        Random rand = new Random();
+        for (int i = 0; i <=10; i++){
+            id_plano = rand.nextInt();
+        } 
+        return id_plano;
     }
 
     public int getId_paciente() {

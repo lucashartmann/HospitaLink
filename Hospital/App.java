@@ -15,7 +15,7 @@ public class App {
     }
 
     public void menu() {
-        System.out.println("Digite o número do procedimento desejado");
+        System.out.println("\nDigite o número do procedimento desejado");
         System.out.println("1 -- Gerenciar consultas");
         System.out.println("2 -- Gerenciar pacientes");
         System.out.println("3 -- Gerenciar médicos");
@@ -54,12 +54,13 @@ public class App {
     }
 
     public void menuConsulta() {
-        String nome, num_documento, data_nascimento, data, hora_minuto, nomeMedico;
+        String nome, num_documento, data_nascimento, data, hora_minuto, nomeMedico, nomePlano;
         int idade;
         char genero;
         Paciente paciente;
         Medico medico;
         Consulta consulta;
+        PlanoSaude plano_saude;
         System.out.println("\nDigite o número da operação desejada");
         System.out.println("1 -- Marcar");
         System.out.println("2 -- Remarcar");
@@ -81,6 +82,9 @@ public class App {
                 genero = scanner.next().charAt(0);
                 System.out.println("Digite o data de nascimento do paciente: (formato ddmmuuuu)");
                 data_nascimento = scanner.next();
+                System.out.println("Digite o nome do plano de saúde do paciente: ");
+                nomePlano = scanner.next();
+                plano_saude = new PlanoSaude(nomePlano, 0);
                 System.out.println("Digite o nome do médico: ");
                 nomeMedico = scanner.next();
                 System.out.println("Digite a data(formato ddmmuuuu)");
@@ -91,7 +95,8 @@ public class App {
                 data = calendario.formatarData(data);
                 hora_minuto = calendario.formatarHora(hora_minuto);
                 medico = clinicas.consultarMedicos(nomeMedico);
-                paciente = new Paciente(nome, idade, num_documento, genero, data_nascimento, null);
+                paciente = new Paciente(nome, idade, num_documento, genero, data_nascimento, plano_saude);
+                plano_saude.setId_paciente(paciente.getId_paciente());
                 consulta = new Consulta(paciente, medico, data, hora_minuto);
                 clinicas.cadastrarConsultas(consulta);
                 clinicas.cadastrarPacientes(paciente);
@@ -185,7 +190,7 @@ public class App {
     }
 
     public void menuPaciente(){
-        String nome, num_documento, data_nascimento;
+        String nome, num_documento, data_nascimento, nomePlano;
         char genero;
         int idade;
         PlanoSaude plano_saude;
@@ -206,12 +211,16 @@ public class App {
                 idade = scanner.nextInt();
                 System.out.println("Digite o RG ou CPF do paciente");
                 num_documento = scanner.next();
-                System.out.println("Digite o genero do paciente (usando M ou F)");
+                System.out.println("Digite o gênero do paciente (usando M ou F)");
                 genero = scanner.next().charAt(0);
                 System.out.println("Digite o data de nascimento do paciente: (formato ddmmuuuu)");
                 data_nascimento = scanner.next();
+                System.out.println("Digite o nome do plano de saúde do paciente: ");
+                nomePlano = scanner.next();
+                plano_saude = new PlanoSaude(nomePlano, 0);
                 data_nascimento = calendario.formatarData(data_nascimento);
-                paciente = new Paciente(nome, idade, num_documento, genero, data_nascimento, null);
+                paciente = new Paciente(nome, idade, num_documento, genero, data_nascimento, plano_saude);
+                plano_saude.setId_paciente(paciente.getId_paciente());
                 clinicas.cadastrarPacientes(paciente);
                 break;
             case 2:
