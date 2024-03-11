@@ -7,6 +7,7 @@ public class App {
             "90650-001");
     Hospital clinicas = new Hospital("Clinicas", endereco);
     Scanner scanner = new Scanner(System.in);
+    int option;
 
     public static void main(String[] args) {
         App app = new App();
@@ -15,24 +16,26 @@ public class App {
 
     public void menu() {
         System.out.println("Digite o número do procedimento desejado");
-        System.out.println("1 -- Modificar consulta");
-        System.out.println("2 -- Ver hospital");
-        System.out.println("3 -- Cadastrar médicos");
-        System.out.println("4 -- ");
+        System.out.println("1 -- Gerenciar consultas");
+        System.out.println("2 -- Gerenciar pacientes");
+        System.out.println("3 -- Gerenciar médicos");
+        System.out.println("4 -- Ver Hospital");
         System.out.println("5 -- Sair do Menu ");
-        int option = scanner.nextInt();
+        option = scanner.nextInt();
         switch (option) {
             case 1:
-                // gerenciar consultas
-                consulta();
+                menuMedico();
                 break;
             case 2:
-                // ver sistema do hospital
-                verHospital();
+                // gerenciar consultas
+                menuConsulta();
                 break;
             case 3:
+                menuPaciente();
                 break;
             case 4:
+                // ver sistema do hospital
+                verHospital();
                 break;
             case 5:
                 // sair do menu
@@ -50,26 +53,32 @@ public class App {
         System.out.println(clinicas.toString());
     }
 
-    public void consulta() {
-        String nome, rg, genero, data_nascimento, data, hora_minuto, nomeMedico;
+    public void menuConsulta() {
+        String nome, num_documento, data_nascimento, data, hora_minuto, nomeMedico;
+        int idade;
+        char genero;
         Paciente paciente;
         Medico medico;
         Consulta consulta;
-        System.out.println("Digite o número da operação desejada");
+        System.out.println("\nDigite o número da operação desejada");
         System.out.println("1 -- Marcar");
         System.out.println("2 -- Remarcar");
         System.out.println("3 -- Cancelar");
-        System.out.println("4 -- Sair");
-        int option = scanner.nextInt();
+        System.out.println("4 -- Ver consultas");
+        System.out.println("5 -- Ver quantidade de consultas");
+        System.out.println("6 -- Sair do menu de consultas");
+        option = scanner.nextInt();
         switch (option) {
             case 1:
                 // Marcar consulta
                 System.out.println("Digite o nome do paciente:");
                 nome = scanner.next();
-                System.out.println("Digite o RG do paciente:");
-                rg = scanner.next();
-                System.out.println("Digite o genero do paciente:");
-                genero = scanner.next();
+                System.out.println("Digite a idade do paciente");
+                idade = scanner.nextInt();
+                System.out.println("Digite o RG ou CPF do paciente:");
+                num_documento = scanner.next();
+                System.out.println("Digite o genero do paciente: (usando M ou F)");
+                genero = scanner.next().charAt(0);
                 System.out.println("Digite o data de nascimento do paciente: (formato ddmmuuuu)");
                 data_nascimento = scanner.next();
                 System.out.println("Digite o nome do médico: ");
@@ -82,11 +91,11 @@ public class App {
                 data = calendario.formatarData(data);
                 hora_minuto = calendario.formatarHora(hora_minuto);
                 medico = clinicas.consultarMedicos(nomeMedico);
-                paciente = new Paciente(nome, rg, genero, data_nascimento, null);
+                paciente = new Paciente(nome, idade, num_documento, genero, data_nascimento, null);
                 consulta = new Consulta(paciente, medico, data, hora_minuto);
                 clinicas.cadastrarConsultas(consulta);
                 clinicas.cadastrarPacientes(paciente);
-                System.out.println("Consulta marcada" + consulta.toString());
+                System.out.println("Consulta marcada! " + consulta.toString());
                 break;
             case 2:
                 // Remarcar consulta
@@ -102,7 +111,7 @@ public class App {
                 hora_minuto = calendario.formatarHora(hora_minuto);
                 consulta.setData(data);
                 consulta.setHora(hora_minuto);
-                System.out.println("Consulta remarcada" + consulta.toString());
+                System.out.println("Consulta remarcada! " + consulta.toString());
                 break;
             case 3:
                 // cancelar consulta
@@ -111,12 +120,15 @@ public class App {
                 paciente = clinicas.consultarPacientes(nome);
                 consulta = clinicas.consultarAgenda(paciente);
                 clinicas.removerConsultas(consulta);
-                System.out.println("Consulta cancelada");
+                System.out.println("Consulta cancelada!");
                 break;
             case 4:
-                // sair do menu
-                System.out.println("Você escolheu sair do menu");
-                System.exit(option);
+                clinicas.listaConsultas();
+                break;
+            case 5:
+                clinicas.getQuantidadeConsultas();
+                break;
+            case 6:
                 break;
             default:
                 System.out.println("Caracter inválido, tente novamente");
@@ -125,21 +137,101 @@ public class App {
         scanner.close();
     }
 
-    public void cadastroMedicos() {
+    public void menuMedico() {
         String nome, especialidade, uf_crm;
         int num_crm;
         Medico medico;
 
-        System.out.println("Digite o nome do médico");
-        nome = scanner.next();
-        System.out.println("Digite a especialidade do médico");
-        especialidade = scanner.next();
-        System.out.println("Digite o número do CRM");
-        num_crm = scanner.nextInt();
-        System.out.println("Digite o UF do CRM");
-        uf_crm = scanner.next();
-        medico = new Medico(nome, especialidade, num_crm, uf_crm);
-        clinicas.cadastrarMedicos(medico);
+        System.out.println("\nDigite o número da operação desejada");
+        System.out.println("1 -- Cadastrar médico");
+        System.out.println("2 -- Remover médico");
+        System.out.println("3 -- Ver médicos");
+        System.out.println("4 -- Ver quantidade de consultas");
+        System.out.println("5 -- Sair do menu de médicos");
+        option = scanner.nextInt();
+
+        switch (option) {
+            case 1:
+                System.out.println("Digite o nome do médico");
+                nome = scanner.next();
+                System.out.println("Digite a especialidade do médico");
+                especialidade = scanner.next();
+                System.out.println("Digite o número do CRM");
+                num_crm = scanner.nextInt();
+                System.out.println("Digite o UF do CRM");
+                uf_crm = scanner.next();
+                medico = new Medico(nome, especialidade, num_crm, uf_crm);
+                clinicas.cadastrarMedicos(medico);
+                break;
+            case 2:
+                System.out.println("Digite o nome do médico");
+                nome = scanner.next();
+                medico = clinicas.consultarMedicos(nome);
+                clinicas.removerMedicos(medico);
+                break;
+            case 3:
+                clinicas.listaMedicos();
+                break;
+            case 4:
+                clinicas.getQuantidadeMedicos();
+                break;
+            case 5:
+                break;
+            default:
+                System.out.println("Caracter inválido, tente novamente");
+                break;
+        }
+
+    }
+
+    public void menuPaciente(){
+        String nome, num_documento, data_nascimento;
+        char genero;
+        int idade;
+        PlanoSaude plano_saude;
+        Paciente paciente;
+        System.out.println("\nDigite o número da operação desejada");
+        System.out.println("1 -- Cadastrar paciente");
+        System.out.println("2 -- Remover paciente");
+        System.out.println("3 -- Ver pacientes");
+        System.out.println("4 -- Ver quantidade de pacientes");
+        System.out.println("5 -- Sair do menu de pacientes");
+        option = scanner.nextInt();
+
+        switch (option) {
+            case 1:
+                System.out.println("Digite o nome do paciente");
+                nome = scanner.next();
+                System.out.println("Digite a idade do paciente");
+                idade = scanner.nextInt();
+                System.out.println("Digite o RG ou CPF do paciente");
+                num_documento = scanner.next();
+                System.out.println("Digite o genero do paciente (usando M ou F)");
+                genero = scanner.next().charAt(0);
+                System.out.println("Digite o data de nascimento do paciente: (formato ddmmuuuu)");
+                data_nascimento = scanner.next();
+                data_nascimento = calendario.formatarData(data_nascimento);
+                paciente = new Paciente(nome, idade, num_documento, genero, data_nascimento, null);
+                clinicas.cadastrarPacientes(paciente);
+                break;
+            case 2:
+                System.out.println("Digite o nome do paciente");
+                nome = scanner.next();
+                paciente = clinicas.consultarPacientes(nome);
+                clinicas.removerPacientes(paciente);
+                break;
+            case 3:
+                clinicas.listaPacientes();
+                break;
+            case 4:
+                clinicas.getQuantidadePacientes();
+                break;
+            case 5:
+                break;
+            default:
+                System.out.println("Caracter inválido, tente novamente");
+                break;
+        }
 
     }
 

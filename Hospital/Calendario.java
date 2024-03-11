@@ -4,9 +4,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Calendario {
 
-    private String hora_minuto;
-    private String dataFormatada;
-
     public Calendario() {
 
     }

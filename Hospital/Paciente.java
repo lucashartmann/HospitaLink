@@ -5,12 +5,14 @@ public class Paciente {
     private int id_paciente;
     private String nome;
     private String num_documento;
-    private String genero;
+    private char genero;
     private String data_nascimento;
+    private int idade;
     private PlanoSaude plano_saude;
 
-    public Paciente(String nome, String num_documento, String genero, String data_nascimento, PlanoSaude plano_saude) {
+    public Paciente(String nome, int idade, String num_documento, char genero, String data_nascimento, PlanoSaude plano_saude) {
         this.nome = nome;
+        this.idade = idade;
         this.num_documento = num_documento;
         this.genero = genero;
         this.data_nascimento = data_nascimento;
@@ -24,7 +26,7 @@ public class Paciente {
     public int setId_paciente() {
         Random rand = new Random();
         for (int i = 0; i <=10; i++){
-            int id_paciente = rand.nextInt();
+            id_paciente = rand.nextInt();
         } 
         return id_paciente;
     }
@@ -45,11 +47,11 @@ public class Paciente {
         this.num_documento = num_documento;
     }
 
-    public String getGenero() {
+    public char getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(char genero) {
         this.genero = genero;
     }
 
@@ -59,6 +61,22 @@ public class Paciente {
 
     public void setData_nascimento(String data_nascimento) {
         this.data_nascimento = data_nascimento;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
+
+    public PlanoSaude getPlano_saude() {
+        return plano_saude;
+    }
+
+    public void setPlano_saude(PlanoSaude plano_saude) {
+        this.plano_saude = plano_saude;
     }
 
     @Override

@@ -8,6 +8,10 @@ public class Hospital {
     private Medico medico;
     private Paciente paciente;
     private Consulta consulta;
+    private int quantidadeConsultas;
+    private int quantidadeMedicos;
+    private int quantidadePacientes;
+
 
     private ArrayList<Medico> junta;
     private ArrayList<Paciente> multidao;
@@ -22,11 +26,25 @@ public class Hospital {
     }
 
     public void cadastrarConsultas(Consulta consulta) {
-        agenda.add(consulta);
+        if (!agenda.contains(consulta)) {
+            agenda.add(consulta);
+            quantidadeConsultas++;
+            System.out.println("Consulta adicionada");
+        } else {
+            System.out.println("A consulta já está na agenda");
+        }
     }
 
     public void removerConsultas(Consulta consulta) {
-        agenda.remove(consulta);
+        if (agenda.isEmpty()) {
+            System.out.println("A agenda está vazia");
+        } else if (!agenda.contains(consulta)) {
+            System.out.println("A consulta não está na agenda");
+        } else {
+            agenda.remove(consulta);
+            quantidadeConsultas--;
+            System.out.println("Consulta removida");
+        }
     }
 
     public Consulta consultarAgenda(Paciente paciente) {
@@ -43,12 +61,58 @@ public class Hospital {
         }
     }
 
+    public void listaConsultas(){
+        System.out.println("-- Lista de consultas --");
+        for(Consulta a: agenda){
+            a.toString();
+        }
+    }
+    public void listaPacientes(){
+        System.out.println("-- Lista de pacientes --");
+        for(Paciente a: multidao){
+            a.toString();
+        }
+    }
+    public void listaMedicos(){
+        System.out.println("-- Lista de médicos --");
+        for(Medico a: junta){
+            a.toString();
+        }
+    }
+
+
+    public int getQuantidadeConsultas() {
+        return quantidadeConsultas;
+    }
+
+    public int getQuantidadeMedicos() {
+        return quantidadeMedicos;
+    }
+
+    public int getQuantidadePacientes() {
+        return quantidadePacientes;
+    }
+
     public void cadastrarPacientes(Paciente paciente) {
-        multidao.add(paciente);
+        if (!multidao.contains(paciente)) {
+            multidao.add(paciente);
+            quantidadePacientes++;
+            System.out.println("Paciente adicionado");
+        } else {
+            System.out.println("O paciente já está cadastrado");
+        }
     }
 
     public void removerPacientes(Paciente paciente) {
-        multidao.remove(paciente);
+        if (multidao.isEmpty()) {
+            System.out.println("A lista de pacientes está vazia");
+        } else if (!multidao.contains(paciente)) {
+            System.out.println("O paciente não está cadastrado");
+        } else {
+            multidao.remove(paciente);
+            quantidadePacientes--;
+            System.out.println("Paciente removido");
+        }
     }
 
     public Paciente consultarPacientes(String nome) {
@@ -66,11 +130,25 @@ public class Hospital {
     }
 
     public void cadastrarMedicos(Medico medico) {
-        junta.add(medico);
+        if (!junta.contains(medico)) {
+            junta.add(medico);
+            quantidadeMedicos++;
+            System.out.println("Médico adicionado");
+        } else {
+            System.out.println("Médico já cadastrado");
+        }
     }
 
     public void removerMedicos(Medico medico) {
-        junta.remove(medico);
+        if (junta.isEmpty()) {
+            System.out.println("A lista de médicos está vazia");
+        } else if (!junta.contains(medico)) {
+            System.out.println("O médico não está cadastrado");
+        } else {
+            junta.remove(medico);
+            quantidadeMedicos--;
+            System.out.println("Médico removido");
+        }
     }
 
     public Medico consultarMedicos(String nome) {
