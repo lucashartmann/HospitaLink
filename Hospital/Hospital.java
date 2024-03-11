@@ -12,7 +12,6 @@ public class Hospital {
     private int quantidadeMedicos;
     private int quantidadePacientes;
 
-
     private ArrayList<Medico> junta;
     private ArrayList<Paciente> multidao;
     private ArrayList<Consulta> agenda;
@@ -61,25 +60,26 @@ public class Hospital {
         }
     }
 
-    public void listaConsultas(){
+    public void listaConsultas() {
         System.out.println("-- Lista de consultas --");
-        for(Consulta a: agenda){
-            a.toString();
-        }
-    }
-    public void listaPacientes(){
-        System.out.println("-- Lista de pacientes --");
-        for(Paciente a: multidao){
-            a.toString();
-        }
-    }
-    public void listaMedicos(){
-        System.out.println("-- Lista de médicos --");
-        for(Medico a: junta){
-            a.toString();
+        for (Consulta a : agenda) {
+            System.out.println(a.toString());
         }
     }
 
+    public void listaPacientes() {
+        System.out.println("-- Lista de pacientes --");
+        for (Paciente a : multidao) {
+            System.out.println(a.toString());
+        }
+    }
+
+    public void listaMedicos() {
+        System.out.println("-- Lista de médicos --");
+        for (Medico a : junta) {
+            System.out.println(a.toString());
+        }
+    }
 
     public int getQuantidadeConsultas() {
         return quantidadeConsultas;
