@@ -46,7 +46,7 @@ public class App {
                 System.out.println("Caracter inválido, tente novamente");
                 break;
         }
-        scanner.close();
+        menu();
     }
 
     public void verHospital() {
@@ -139,7 +139,7 @@ public class App {
                 System.out.println("Caracter inválido, tente novamente");
                 break;
         }
-        scanner.close();
+        menuConsulta();
     }
 
     public void menuMedico() {
@@ -186,6 +186,7 @@ public class App {
                 System.out.println("Caracter inválido, tente novamente");
                 break;
         }
+        menuMedico();
 
     }
 
@@ -241,6 +242,7 @@ public class App {
                 System.out.println("Caracter inválido, tente novamente");
                 break;
         }
+        menuPaciente();
 
     }
 
